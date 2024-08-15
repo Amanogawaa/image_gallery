@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { ImagehandlerService } from '../../service/imagehandler.service';
 import { CommonModule } from '@angular/common';
@@ -28,7 +28,6 @@ export class HomePageComponent implements OnInit {
 
   constructor(
     private service: ImagehandlerService,
-    private sanitizer: DomSanitizer,
     private dialog: MatDialog
   ) {}
 
@@ -124,9 +123,11 @@ export class HomePageComponent implements OnInit {
     this.selectedImageIndex = index;
   }
 
-  openImageDialog(id: number): void {
+  openImageDialog(id: number, src: string): void {
     this.dialog.open(ViewimageComponent, {
-      data: { id: id },
+      data: { id: id, src: src },
+      width: '90%',
+      height: '90%',
     });
   }
 }

@@ -110,9 +110,27 @@ switch ($_SERVER['REQUEST_METHOD']) {
                 }
                 break;
 
+            case 'getimagedetails':
+                if (isset($request[1])) {
+                    echo json_encode($get->getImageDetails($request[1]));
+                } else {
+                    echo "ID not provided";
+                    http_response_code(400);
+                }
+                break;
+
             case 'getimagecomment':
                 if (isset($request[1])) {
                     echo json_encode($get->getComment($request[1]));
+                } else {
+                    echo "ID not provided";
+                    http_response_code(400);
+                }
+                break;
+
+            case 'getusers':
+                if (isset($request[1])) {
+                    echo json_encode($get->getUser($request[1]));
                 } else {
                     echo "ID not provided";
                     http_response_code(400);

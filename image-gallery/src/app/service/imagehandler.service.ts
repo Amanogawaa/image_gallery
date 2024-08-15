@@ -86,6 +86,18 @@ export class ImagehandlerService {
     return this.http.get<any[]>(`${this.API_URL}getallimages`);
   }
 
+  getComments(id: any): Observable<any[]> {
+    return this.http.get<any[]>(`${this.API_URL}getimagecomment/${id}`);
+  }
+
+  getUsers(id: any): Observable<any[]> {
+    return this.http.get<any[]>(`${this.API_URL}getusers/${id}`);
+  }
+
+  getImageDetails(id: any): Observable<any[]> {
+    return this.http.get<any[]>(`${this.API_URL}getimagedetails/${id}`);
+  }
+
   deleteImages(id: any): Observable<any> {
     return this.http.delete<any>(`${this.API_URL}deleteimage/${id}`);
   }

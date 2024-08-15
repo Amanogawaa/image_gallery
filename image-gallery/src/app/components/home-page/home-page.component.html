@@ -4,7 +4,7 @@
       <div
         *ngFor="let image of images; let i = index"
         [ngClass]="image.aspectRatioClass"
-        (click)="openImageDialog(image.id)"
+        (click)="openImageDialog(image.id, image.src)"
       >
         <img [src]="image.src" alt="Gallery Image4" />
       </div>

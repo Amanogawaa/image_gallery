@@ -1,1 +1,91 @@
-<p>viewimage works!</p>
+<div
+  class="flex flex-col h-full w-full bg-white border border-gray-200 rounded-lg shadow md:flex-row dark:border-gray-700 dark:bg-gray-800 overflow-y-hidden"
+>
+  <div class="w-1/2 h-full border border-gray-900">
+    <img [src]="image.src" alt="" />
+  </div>
+  <div
+    class="flex flex-col justify-start items-start w-1/2 px-4 leading-normal"
+  >
+    <div *ngIf="imageDetails != null" class="p-4">
+      <h2 class="text-2xl font-bold dark:text-white">
+        {{ imageDetails.title }}
+      </h2>
+
+      <p class="text-lg font-normal text-gray-500">
+        {{ imageDetails.description }}
+      </p>
+    </div>
+
+    <section
+      class="bg-white dark:bg-gray-900 antialiased w-full max-h-full h-screen overflow-y-auto"
+    >
+      <div class="w-full mx-auto px-4">
+        <div class="flex justify-between items-center mb-6">
+          <h2
+            class="text-lg lg:text-xl font-bold text-gray-900 dark:text-white"
+          >
+            Discussion ({{ comments.length }})
+          </h2>
+        </div>
+
+        <article
+          class="p-6 text-base bg-white rounded-lg dark:bg-gray-900"
+          *ngFor="let comment of comments"
+        >
+          <footer class="flex justify-between items-center mb-2">
+            <div class="flex items-center">
+              <p
+                class="inline-flex items-center mr-3 text-sm text-gray-900 dark:text-white font-semibold"
+              >
+                Michael Gough
+              </p>
+              <p class="text-sm text-gray-600 dark:text-gray-400">
+                <time pubdate datetime="2022-02-08" title="February 8th, 2022"
+                  >Feb. 8, 2022</time
+                >
+              </p>
+            </div>
+          </footer>
+          <p class="text-gray-500 dark:text-gray-400">
+            {{ comment.content }}
+          </p>
+        </article>
+      </div>
+      <form class="mb-3 fixed bottom-[27px] w-full max-w-[550px] bg-white">
+        <div
+          class="py-2 relative px-4 mb-4 bg-white rounded-lg rounded-t-lg border border-gray-200 dark:bg-gray-800 dark:border-gray-700"
+        >
+          <label for="comment" class="sr-only">Your comment</label>
+          <textarea
+            id="comment"
+            rows="6"
+            class="px-0 w-full text-sm text-gray-900 border-0 focus:ring-0 focus:outline-none dark:text-white dark:placeholder-gray-400 dark:bg-gray-800"
+            placeholder="Write a comment..."
+            required
+          ></textarea>
+          <button
+            type="submit"
+            class="inline-flex absolute justify-center bottom-2 right-2 items-center p-2.5 text-xs font-medium text-center text-white bg-red-500 rounded-lg focus:ring-4 focus:ring-primary-200 dark:focus:ring-primary-900 hover:bg-red-700"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="lucide lucide-send-horizontal"
+            >
+              <path d="m3 3 3 9-3 9 19-9Z" />
+              <path d="M6 12h16" />
+            </svg>
+          </button>
+        </div>
+      </form>
+    </section>
+  </div>
+</div>

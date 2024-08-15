@@ -67,6 +67,32 @@ class Get extends GlobalMethods
         }
     }
 
+
+    public function getImageDetails($id)
+    {
+        $condition = ($id !== null) ? "id = $id" : null;
+        $result = $this->get_records('images', $condition, 'id, title, description');
+
+        if ($result['status']['remarks'] === 'success') {
+            return $result['payload'];
+        } else {
+            return [];
+        }
+    }
+
+
+    public function getUser($id)
+    {
+        $condition = ($id !== null) ? "id = $id" : null;
+        $result = $this->get_records('users', $condition);
+
+        if ($result['status']['remarks'] === 'success') {
+            return $result['payload'];
+        } else {
+            return [];
+        }
+    }
+
     public function getComment($image_id)
     {
         $condition = ($image_id !== null) ? "image_id = $image_id" : null;
@@ -89,6 +115,8 @@ class Get extends GlobalMethods
             return [];
         }
     }
+
+
 
     public function getUserImages($id)
     {

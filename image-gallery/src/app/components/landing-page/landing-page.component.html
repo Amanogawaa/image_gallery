@@ -1,0 +1,15 @@
+<app-navbar></app-navbar>
+
+<div class="p-4">
+  <div class="border-gray-200 dark:border-gray-700">
+    <div class="grid-wrapper">
+      <div
+        *ngFor="let image of images; let i = index"
+        [ngClass]="image.aspectRatioClass"
+        (click)="openImage(i)"
+      >
+        <img [src]="image.src" alt="Gallery Image3" />
+      </div>
+    </div>
+  </div>
+</div>

@@ -5,6 +5,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { ViewimageComponent } from '../viewimage/viewimage.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home-page',
@@ -28,7 +29,8 @@ export class HomePageComponent implements OnInit {
 
   constructor(
     private service: ImagehandlerService,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -117,10 +119,6 @@ export class HomePageComponent implements OnInit {
     } else {
       return '';
     }
-  }
-
-  openImage(index: number): void {
-    this.selectedImageIndex = index;
   }
 
   openImageDialog(id: number, src: string): void {

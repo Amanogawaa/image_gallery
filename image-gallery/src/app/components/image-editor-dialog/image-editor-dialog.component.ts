@@ -155,7 +155,6 @@ export class ImageEditorDialogComponent {
     this.dialogRef.close();
   }
 
-  // optional - hard to implement
   onFileChange(event: any) {
     const files = event.target.files as FileList;
     if (files.length > 0) {

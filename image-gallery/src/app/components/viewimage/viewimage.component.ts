@@ -3,6 +3,7 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { ImagehandlerService } from '../../service/imagehandler.service';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-viewimage',
@@ -16,6 +17,7 @@ export class ViewimageComponent implements OnInit {
   comments: any[] = [];
   imageDetails: any;
   form: any;
+  imageId: any;
 
   constructor(
     private dialogRef: MatDialogRef<ViewimageComponent>,

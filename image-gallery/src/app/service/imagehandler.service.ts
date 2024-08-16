@@ -42,6 +42,10 @@ export class ImagehandlerService {
     return this.http.post(`${this.API_URL}login`, data);
   }
 
+  addComment(data: any): Observable<any> {
+    return this.http.post(`${this.API_URL}addcomment`, data);
+  }
+
   getCurrentUserId(): number | null {
     const mytoken = sessionStorage.getItem('token');
     if (mytoken) {

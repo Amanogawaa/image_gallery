@@ -2,7 +2,7 @@
   <div class="absolute bg-transparent opacity-60 inset-0 z-0"></div>
   <button
     (click)="cancelEdit()"
-    class="bg-white rounded-full p-1.5 shadow-lg absolute top-2.5 left-4"
+    class="bg-white z-50 rounded-full p-1.5 shadow-lg absolute top-2.5 left-4"
   >
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,7 +10,7 @@
       height="24"
       viewBox="0 0 24 24"
       fill="none"
-      stroke="currentColor"
+      stroke="#333333"
       stroke-width="1.5"
       stroke-linecap="round"
       stroke-linejoin="round"
@@ -20,9 +20,7 @@
       <path d="m6 6 12 12" />
     </svg>
   </button>
-  <div
-    class="sm:max-w-lg w-full p-10 bg-white rounded-xl border border-gray-600 z-10 h-full"
-  >
+  <div class="sm:max-w-lg w-full p-10 bg-white rounded-xl z-10 h-full">
     <div class="text-center">
       <h2 class="mt-5 text-3xl font-bold text-gray-900">Edit post!</h2>
     </div>

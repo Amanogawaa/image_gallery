@@ -119,6 +119,7 @@ export class UpdatePageComponent implements AfterViewInit, OnInit {
     const dialog = this.dialog.open(ImageEditorDialogComponent, {
       data: { id: id, src: src },
       width: '55%',
+      height: '96%',
       disableClose: true,
     });
 

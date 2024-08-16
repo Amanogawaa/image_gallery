@@ -80,30 +80,68 @@ class Get extends GlobalMethods
         }
     }
 
-
-    public function getUser($id)
-    {
-        $condition = ($id !== null) ? "id = $id" : null;
-        $result = $this->get_records('users', $condition);
-
-        if ($result['status']['remarks'] === 'success') {
-            return $result['payload'];
-        } else {
-            return [];
-        }
-    }
-
     public function getComment($image_id)
     {
-        $condition = ($image_id !== null) ? "image_id = $image_id" : null;
-        $result = $this->get_records('comments', $condition);
+        // Ensure $image_id is properly sanitized to avoid SQL injection
+        if (!is_numeric($image_id)) {
+            throw new InvalidArgumentException('Invalid image ID');
+        }
 
-        if ($result['status']['remarks'] === 'success') {
-            return $result['payload'];
-        } else {
-            return [];
+        // Prepare the SQL query with a placeholder for image_id
+        $sql = "
+            SELECT 
+                c.id AS comment_id,
+                c.content AS comment_content,
+                c.created_at AS comment_created_at,
+                u.id AS user_id,
+                u.username AS user_username
+            FROM 
+                comments c
+            JOIN 
+                users u ON c.user_id = u.id
+            WHERE 
+                c.image_id = :image_id
+            ORDER BY 
+                c.created_at DESC
+        ";
+
+        try {
+            $stmt = $this->pdo->prepare($sql);
+            $stmt->bindParam(':image_id', $image_id, PDO::PARAM_INT);
+            $stmt->execute();
+
+            $comments = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+            return [
+                'status' => [
+                    'remarks' => 'success',
+                ],
+                'payload' => $comments,
+            ];
+        } catch (PDOException $e) {
+            return [
+                'status' => [
+                    'remarks' => 'error',
+                    'message' => $e->getMessage(),
+                ],
+                'payload' => [],
+            ];
         }
     }
+
+
+
+    // public function getComment($image_id)
+    // {
+    //     $condition = ($image_id !== null) ? "image_id = $image_id" : null;
+    //     $result = $this->get_records('comments', $condition);
+
+    //     if ($result['status']['remarks'] === 'success') {
+    //         return $result['payload'];
+    //     } else {
+    //         return [];
+    //     }
+    // }
 
     public function getAllImages()
     {

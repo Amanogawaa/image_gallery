@@ -109,6 +109,9 @@ export class CreatePageComponent implements OnInit {
         (
           document.querySelector('input[type="file"]') as HTMLInputElement
         ).value = '';
+
+        this.imageForm.get('title')?.reset();
+        this.imageForm.get('description')?.reset();
         this.getUserImages(this.user_id);
       },
       (error) => {

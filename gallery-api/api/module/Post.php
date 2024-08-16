@@ -105,14 +105,9 @@ class Post extends GlobalMethods
             return $this->sendPayload(null, 'failed', "Incomplete comment data.", 400);
         }
 
-
-
-
         $image_id = $data->image_id;
         $user_id = $data->user_id;
         $content = $data->content;
-
-
 
         $sql = "INSERT INTO comments ( image_id, user_id, content ) 
                 VALUES (?, ?, ? )";

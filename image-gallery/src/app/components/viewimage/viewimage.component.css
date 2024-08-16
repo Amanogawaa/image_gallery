@@ -4,3 +4,23 @@ img {
   vertical-align: middle;
   display: inline-block;
 }
+
+:root::-webkit-scrollbar {
+  display: none;
+}
+
+:root {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.scrollable-content:hover,
+.scrollable-content:active,
+.scrollable-content:focus {
+  overflow-x: scroll;
+}
+
+::-webkit-scrollbar {
+  height: 10px;
+  width: 10px;
+}

@@ -25,6 +25,7 @@ export class ImageEditorDialogComponent {
   };
 
   form: any;
+  imageDetails: any;
   file: any;
   imagePreview?: string | ArrayBuffer | null = null;
 
@@ -41,6 +42,18 @@ export class ImageEditorDialogComponent {
   }
 
   ngOnInit(): void {
+    this.service.getImageDetails(this.data.id).subscribe((response: any) => {
+      this.imageDetails = response[0];
+      console.log('Image details:', this.imageDetails);
+
+      if (this.imageDetails != null) {
+        this.form.patchValue({
+          title: this.imageDetails.title,
+          description: this.imageDetails.description,
+        });
+      }
+    });
+
     this.image = new Image();
     this.image.crossOrigin = 'Anonymous ';
 
@@ -117,6 +130,11 @@ export class ImageEditorDialogComponent {
       const blob = await this.convertCanvasToBlob();
       const formData = new FormData();
       formData.append('file', blob, 'edited-image.png');
+
+      if (this.form.value.title && this.form.value.description) {
+        formData.append('title', this.form.value.title);
+        formData.append('description', this.form.value.description);
+      }
 
       this.service.updateImage(this.data.id, formData).subscribe(
         (response) => {
